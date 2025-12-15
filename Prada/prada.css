@@ -1,0 +1,295 @@
+/* =========================
+   RESET
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* =========================
+   VARIABILI
+========================= */
+:root {
+    --accent: rgb(133,145,156);
+    --text-main: #111;
+    --text-muted: #666;
+    --bg-main: #fff;
+}
+
+/* =========================
+   BODY
+========================= */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                 Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 40px;
+    border-bottom: 2px solid rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 10;
+}
+
+nav h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 32px;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: 600;
+    font-size: 0.9rem;
+    position: relative;
+    transition: color 0.25s ease, transform 0.3s ease;
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent);
+    transition: width 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--accent);
+    transform: translateY(-2px);
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* =========================
+   PAGE TITLE
+========================= */
+.work-title {
+    text-align: center;
+    margin: 50px 0 30px;
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInUp 0.4s forwards;
+}
+
+/* =========================
+   GALLERY
+========================= */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1200px;
+    margin: 50px auto;
+
+}
+
+/* =========================
+   GALLERY ITEMS
+========================= */
+.item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInUp 0.3s forwards;
+    will-change: opacity, transform;
+}
+
+.item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.item:hover img {
+    transform: scale(1.05);
+}
+
+/* =========================
+   OVERLAY SCURO
+========================= */
+.item::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.25);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    pointer-events: none;
+}
+
+.item:hover::after {
+    opacity: 1;
+}
+
+/* =========================
+   LIGHTBOX MIGLIORATO
+========================= */
+#lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(22, 22, 22, 0.95);
+    backdrop-filter: blur(8px); /* sfocatura dietro */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+#lightbox.show {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.lightbox-img {
+    max-width: 80%;
+    max-height: 80%;
+    margin-bottom: 20px;
+    border-radius: 0px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    transition: transform 0.4s ease, opacity 0.5s ease;
+    opacity: 1;
+}
+
+#lightbox.show .lightbox-img {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.lightbox-img:hover {
+    transform: scale(1.02);
+}
+
+.lightbox-caption {
+    color: #fff;
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.7);
+}
+
+/* BOTTONI LIGHTBOX */
+.close, .prev, .next {
+    position: absolute;
+    color: #fff;
+    font-size: 2.5rem;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s ease;
+    text-shadow: 0 2px 6px rgba(100, 95, 95, 0.7);
+    padding: 5px 10px;
+    border-radius: 6px;
+}
+
+.close:hover, .prev:hover, .next:hover {
+    color: var(--accent);
+    background: rgba(255,255,255,0.1);
+}
+
+.close {
+    top: 20px;
+    right: 40px;
+}
+
+.prev {
+    top: 50%;
+    left: 30px;
+    transform: translateY(-50%);
+}
+
+.next {
+    top: 50%;
+    right: 30px;
+    transform: translateY(-50%);
+}
+
+
+/* =========================
+   SEQUENZA ANIMAZIONE GALLERY
+========================= */
+.item:nth-child(1) { animation-delay: 0.05s; }
+.item:nth-child(2) { animation-delay: 0.1s; }
+.item:nth-child(3) { animation-delay: 0.15s; }
+.item:nth-child(4) { animation-delay: 0.2s; }
+.item:nth-child(5) { animation-delay: 0.25s; }
+.item:nth-child(6) { animation-delay: 0.3s; }
+
+/* =========================
+   FOOTER
+========================= */
+footer {
+    text-align: center;
+    padding: 20px;
+    color: var(--text-muted);
+    background-color: #f1f1f1;
+}
+
+/* =========================
+   ANIMAZIONI
+========================= */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 900px) {
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 15px;
+    }
+}

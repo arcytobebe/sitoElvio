@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>ADV — Portfolio</title>
+    <link rel="stylesheet" href="/Prada/prada.css">
+</head>
+<body>
+
+<nav>
+    <h1>ELVIO TRENTINI</h1>
+    <ul>
+        <li id="goToHomeBtn"><a href="/index.html">HOME</a></li>
+        <li><a href="/Fashion/fashion.html">FASHION</a></li>
+        <li id="goToAdv"><a href="/Adv/adv.html">ADV</a></li>
+        <li><a href="/Artist/artist.html">ARTIST</a></li>
+        <li id="goToAbt"><a href="/About/about.html">ABOUT</a></li>
+        <li id="goToCont"><a href="/Contact/contact.html">CONTACT</a></li>
+    </ul>
+</nav>
+
+<h2 class="work-title">ADV</h2>
+
+<main class="gallery">
+    <div class="item">
+        <img src="/photo/rosso.jpg" alt="Prada 1" data-title="Prada 1">
+    </div>
+    <div class="item">
+        <img src="/photo/rosso.jpg" alt="Prada 2" data-title="Prada 2">
+    </div>
+    <div class="item">
+        <img src="/photo/rosso.jpg" alt="Prada 3" data-title="Prada 3">
+    </div>
+    <div class="item">
+        <img src="/photo/rosso.jpg" alt="Prada 4" data-title="Prada 4">
+    </div>
+    <!-- Aggiungi altre immagini qui -->
+</main>
+
+<!-- Lightbox Overlay -->
+<div id="lightbox" class="hidden">
+    <span class="close">&times;</span>
+    <img class="lightbox-img" src="" alt="">
+    <div class="lightbox-caption"></div>
+    <span class="prev">&#10094;</span>
+    <span class="next">&#10095;</span>
+</div>
+
+<footer>
+    <a href="https://www.instagram.com/elvio_trentini">
+        <img src="/photo/instagram.png" alt="instagram" style="width: 25px; margin-bottom: 1%;">
+    </a>
+    <p>© Copyright Elvio Trentini</p>
+</footer>
+
+<script src="prada.js"></script>
+
+</body>
+</html>
