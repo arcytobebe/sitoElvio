@@ -1,0 +1,324 @@
+/* =========================
+   RESET
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* =========================
+   VARIABILI
+========================= */
+:root {
+    --accent: rgb(133,145,156);
+    --text-main: #111;
+    --text-muted: #666;
+    --bg-main: #fff;
+}
+
+/* =========================
+   BODY
+========================= */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                 Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    color: var(--text-main);
+    background-color: var(--bg-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 40px;
+    border-bottom: 2px solid rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;                 
+    z-index: 1000;          
+    background-color: var(--bg-main);  
+}
+
+nav h1 a{
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 32px;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: 600;
+    font-size: 0.9rem;
+    position: relative;
+    transition: color 0.25s ease, transform 0.3s ease;
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent);
+    transition: width 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--accent);
+    transform: translateY(-2px);
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+nav h1 a:hover {
+    color: var(--text-main);
+    transform: none;
+}
+nav h1 a::after {
+    display: none;
+    transform: none;
+}
+
+/* =========================
+   PAGE TITLE
+========================= */
+.work-title {
+    text-align: center;
+    margin: 50px 0 30px;
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.7s forwards;
+}
+
+/* =========================
+   GALLERY MASONRY
+========================= */
+.gallery {
+    max-width: 1200px;
+    margin: 40px auto 80px;
+    column-count: 3;   
+    column-gap: 0;     
+}
+
+.item {
+    display: flow-root;   
+    break-inside: avoid;  
+    margin-bottom: 0;     
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s forwards;
+}
+
+.item img {
+    width: 100%;
+    height: auto;         
+    display: block;
+    transition: transform 0.6s ease;
+}
+
+.item:hover img {
+    transform: scale(1.06);
+}
+
+.gallery a {
+    display: block;       
+}
+
+/* =========================
+   OVERLAY
+========================= */
+.overlay-text {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+    font-size: 1.05rem;
+    letter-spacing: 0.5px;
+    background: rgba(0,0,0,0.55);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+}
+
+.item:hover .overlay-text {
+    opacity: 1;
+}
+
+/* =========================
+   ANIMAZIONE SEQUENZIALE
+========================= */
+.item:nth-child(1) { animation-delay: 0.1s; }
+.item:nth-child(2) { animation-delay: 0.2s; }
+.item:nth-child(3) { animation-delay: 0.3s; }
+.item:nth-child(4) { animation-delay: 0.4s; }
+.item:nth-child(5) { animation-delay: 0.5s; }
+.item:nth-child(6) { animation-delay: 0.6s; }
+
+/* =========================
+   FOOTER
+========================= */
+footer {
+    text-align: center;
+    padding: 30px 20px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    background-color: #f1f1f1;
+}
+
+/* =========================
+   ANIMAZIONI
+========================= */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 900px) {
+    .gallery {
+        column-count: 2; 
+    }
+}
+
+@media (max-width: 600px) {
+    .gallery {
+        column-count: 1; 
+    }
+
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+/* =========================
+   LIGHTBOX / CAROUSEL
+========================= */
+#lightbox {
+    display: none;               
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#lightbox .lightbox-img {
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 4px;
+    transition: transform 0.3s ease;
+}
+
+#lightbox .lightbox-caption {
+    color: #fff;
+    margin-top: 15px;
+    font-size: 1rem;
+    text-align: center;
+}
+
+#lightbox .close,
+#lightbox .prev,
+#lightbox .next {
+    position: absolute;
+    color: #fff;
+    font-size: 2rem;
+    padding: 10px;
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.3s;
+}
+
+#lightbox .close {
+    top: 20px;
+    right: 30px;
+}
+
+#lightbox .prev {
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#lightbox .next {
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#lightbox .close:hover,
+#lightbox .prev:hover,
+#lightbox .next:hover {
+    color: var(--accent);
+}
+
+/* =========================
+   RESPONSIVE LIGHTBOX
+========================= */
+@media (max-width: 900px) {
+    #lightbox .lightbox-img {
+        max-width: 95%;
+        max-height: 70%;
+    }
+
+    #lightbox .close,
+    #lightbox .prev,
+    #lightbox .next {
+        font-size: 1.5rem;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 600px) {
+    #lightbox .lightbox-img {
+        max-width: 100%;
+        max-height: 60%;
+    }
+
+    #lightbox .close,
+    #lightbox .prev,
+    #lightbox .next {
+        font-size: 1.2rem;
+        padding: 6px;
+    }
+}
