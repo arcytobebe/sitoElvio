@@ -121,7 +121,7 @@ nav h1 a::after {
 }
 
 .item {
-    display: flow-root;   /* Il div prende lâ€™altezza dellâ€™immagine */
+    display: flow-root;   /* Il div prende l’altezza dell’immagine */
     break-inside: avoid;  /* Non spezzare tra colonne */
     margin-bottom: 0;     /* Nessuno spazio verticale */
     position: relative;
