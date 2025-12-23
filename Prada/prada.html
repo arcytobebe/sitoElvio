@@ -3,20 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>PRADA 2024 — Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="prada.css">
 </head>
 <body>
 
 <nav>
     <h1><a href="../index.html">ELVIO TRENTINI</a></h1>
-    <ul>
-        <li><a href="../index.html">HOME</a></li>
-        <li><a href="../Fashion/fashion.html">FASHION</a></li>
-        <li><a href="../Adv/adv.html">ADV</a></li>
-        <li><a href="../Artist/artist.html">ARTIST</a></li>
-        <li><a href="../About/about.html">ABOUT</a></li>
-        <li><a href="../Contact/contact.html">CONTACT</a></li>
-    </ul>
+    <button class="menu-toggle">☰</button>
+    
+    <div class="nav-links">
+        <ul>
+            <li><a href="../index.html">HOME</a></li>
+            <li><a href="../Fashion/fashion.html">FASHION</a></li>
+            <li><a href="../Adv/adv.html">ADV</a></li>
+            <li><a href="../Artist/artist.html">ARTIST</a></li>
+            <li><a href="../About/about.html">ABOUT</a></li>
+            <li><a href="../Contact/contact.html">CONTACT</a></li>
+        </ul>
+        <a href="https://www.instagram.com/elvio_trentini">
+            <img src="../photo/instagram.png" alt="Instagram" style="width:25px; margin-top:25px;">
+        </a>
+    </div>
 </nav>
 
 <h2 class="work-title">PRADA – Digital Campaign 2024</h2>
@@ -36,7 +44,7 @@
     </div>
 </main>
 
-<!-- Lightbox Overlay -->
+<!-- Lightbox -->
 <div id="lightbox">
     <span class="close">&times;</span>
     <img class="lightbox-img" src="" alt="">
@@ -47,7 +55,7 @@
 
 <footer>
     <a href="https://www.instagram.com/elvio_trentini">
-        <img src="/photo/instagram.png" alt="instagram" style="width: 25px; margin-bottom: 1%;">
+        <img src="../photo/instagram.png" alt="Instagram" style="width:25px; margin-bottom:8px;">
     </a>
     <p>© Copyright Elvio Trentini</p>
 </footer>
