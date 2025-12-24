@@ -5,34 +5,36 @@ const toggle = document.querySelector(".menu-toggle");
 const navLinks = document.querySelector(".nav-links");
 const links = navLinks.querySelectorAll("a");
 
-// Apri/chiudi il menu quando clicchi l'icona
-toggle.addEventListener("click", () => {
+toggle.addEventListener("click", (e) => {
+    e.stopPropagation();
+
     const isOpen = navLinks.classList.toggle("open");
+    document.body.classList.toggle("menu-open", isOpen);
     toggle.textContent = isOpen ? "✕" : "☰";
 });
 
-// Chiudi il menu se clicchi su una voce
 links.forEach(link => {
     link.addEventListener("click", () => {
         navLinks.classList.remove("open");
+        document.body.classList.remove("menu-open");
         toggle.textContent = "☰";
     });
 });
 
-// Chiudi il menu se clicchi fuori dal menu (opzionale)
 document.addEventListener("click", (e) => {
     if (!navLinks.contains(e.target) && !toggle.contains(e.target)) {
         navLinks.classList.remove("open");
+        document.body.classList.remove("menu-open");
         toggle.textContent = "☰";
     }
 });
+
 
 /* =========================
    STAGGER ANIMATION IMMAGINI
 ========================= */
 const items = document.querySelectorAll(".item");
 
-// Applica ritardo sequenziale e animazione
 items.forEach((item, index) => {
     item.style.animationDelay = `${index * 0.12}s`;
     item.classList.add("reveal");
@@ -40,18 +42,17 @@ items.forEach((item, index) => {
 
 
 /* =========================
-    INSTAGRAM LINK DESKTOP
+   INSTAGRAM LINK (SOLO MOBILE)
 ========================= */
-
-const instagramLink = document.querySelector('.nav-links > a');
+const instagramLink = document.querySelector(".ig-link");
 
 function toggleInstagram() {
-    if (window.innerWidth >= 1200) {
-        instagramLink.style.display = 'none';
+    if (window.innerWidth >= 600) {
+        instagramLink.style.display = "none";
     } else {
-        instagramLink.style.display = 'block';
+        instagramLink.style.display = "flex";
     }
 }
 
 toggleInstagram();
-window.addEventListener('resize', toggleInstagram);
+window.addEventListener("resize", toggleInstagram);
