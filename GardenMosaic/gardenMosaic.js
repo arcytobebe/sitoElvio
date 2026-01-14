@@ -62,20 +62,23 @@ document.addEventListener("click", (e) => {
 });
 
 /* =========================
-   STAGGER ANIMATION IMMAGINI
-========================= */
-const items = document.querySelectorAll(".item");
-items.forEach((item, index) => {
-    item.style.animationDelay = `${index * 0.12}s`;
-    item.classList.add("reveal");
-});
-
-/* =========================
    LINK INSTAGRAM MOBILE
 ========================= */
 const instagramLink = document.querySelector('.nav-links > a');
 function toggleInstagram() {
-    instagramLink.style.display = window.innerWidth >= 1200 ? 'none' : 'block';
+    instagramLink.style.display = window.innerWidth >= 1200 ? 'none' : 'flex';
 }
 toggleInstagram();
 window.addEventListener('resize', toggleInstagram);
+
+/* =========================
+   STAGGER ANIMATION PER RIGHE
+========================= */
+const galleryItemsForAnimation = document.querySelectorAll(".gallery .item");
+const columns = 3; // numero colonne del masonry
+
+galleryItemsForAnimation.forEach((item, index) => {
+    const row = Math.floor(index / columns);
+    item.style.animationDelay = `${row * 0.15}s`; // delay tra righe
+    item.classList.add("reveal"); // opzionale per altri effetti
+});
