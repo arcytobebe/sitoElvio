@@ -76,7 +76,6 @@ nav ul a {
     transition: color var(--transition);
 }
 
-/* underline menu */
 nav ul a::after {
     content: "";
     position: absolute;
@@ -106,6 +105,10 @@ nav ul a:hover::after {
     border: none;
     cursor: pointer;
     z-index: 2000;
+    color: #111;           /* testo nero */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 /* =========================
@@ -123,7 +126,7 @@ nav ul a:hover::after {
 }
 
 /* =========================
-   GALLERY (MASONRY)
+   GALLERY (MASONRY CON ANIMAZIONE PER RIGA)
 ========================= */
 .gallery {
     max-width: 1200px;
@@ -132,27 +135,24 @@ nav ul a:hover::after {
     column-gap: 0;
 }
 
-/* item */
 .item {
-    break-inside: avoid;
     position: relative;
     overflow: hidden;
     opacity: 0;
     transform: translateY(20px);
     animation: fadeInUp 0.6s forwards;
+    /* delay gestito via JS per apparizione riga per riga */
 }
 
-/* immagine */
 .item img {
     width: 100%;
     display: block;
     transition: transform 0.6s ease, filter 0.6s ease;
 }
 
-/* hover immagine */
 .item:hover img {
     transform: scale(1.04);
-    filter: brightness(0.85); /* più scura */
+    filter: brightness(0.85);
 }
 
 /* overlay testi */
@@ -185,10 +185,7 @@ footer {
     font-size: 0.85rem;
     color: var(--text-muted);
     background-color: #f1f1f1;
-
-    /* aggiunto */
-    clear: both;         /* pulisce eventuali float */
-    display: block;      
+    display: block;
 }
 
 /* =========================
@@ -222,20 +219,14 @@ footer {
 }
 
 @media (max-width: 600px) {
-
-    /* gallery a colonna singola */
     .gallery {
         column-count: 2;
     }
 
-    /* toggle menu */
     .menu-toggle {
         display: block;
     }
 
-
-
-    /* menu mobile */
     .nav-links {
         position: fixed;
         top: 72px;
@@ -253,7 +244,6 @@ footer {
         padding-top: 30px;
     }
 
-    /* menu aperto */
     .nav-links.open {
         opacity: 1;
         pointer-events: auto;
@@ -304,7 +294,6 @@ footer {
         color: var(--accent);
     }
 
-    /* Instagram mobile centrato */
     .nav-links > a {
         display: flex;
         justify-content: center;
@@ -319,7 +308,7 @@ footer {
     }
 }
 
-/* NASCONDI LINK INSTAGRAM DI DEFAULT SU DESKTOP */
+/* NASCONDI LINK INSTAGRAM SU DESKTOP */
 .nav-links > a {
     display: none;
 }
