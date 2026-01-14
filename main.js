@@ -7,7 +7,6 @@ const links = navLinks.querySelectorAll("a");
 
 toggle.addEventListener("click", (e) => {
     e.stopPropagation();
-
     const isOpen = navLinks.classList.toggle("open");
     document.body.classList.toggle("menu-open", isOpen);
     toggle.textContent = isOpen ? "✕" : "☰";
@@ -31,17 +30,6 @@ document.addEventListener("click", (e) => {
 
 
 /* =========================
-   STAGGER ANIMATION IMMAGINI
-========================= */
-const items = document.querySelectorAll(".item");
-
-items.forEach((item, index) => {
-    item.style.animationDelay = `${index * 0.12}s`;
-    item.classList.add("reveal");
-});
-
-
-/* =========================
    INSTAGRAM LINK (SOLO MOBILE)
 ========================= */
 const instagramLink = document.querySelector(".ig-link");
@@ -56,3 +44,16 @@ function toggleInstagram() {
 
 toggleInstagram();
 window.addEventListener("resize", toggleInstagram);
+
+
+/* =========================
+   STAGGER ANIMATION PER RIGHE
+========================= */
+const items = document.querySelectorAll(".gallery .item");
+const columns = 3; // numero colonne del masonry
+
+items.forEach((item, index) => {
+    const row = Math.floor(index / columns);
+    item.style.animationDelay = `${row * 0.15}s`; // delay tra righe
+    item.classList.add("reveal"); // se vuoi usare una classe per animazioni aggiuntive
+});
