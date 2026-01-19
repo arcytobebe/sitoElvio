@@ -143,7 +143,7 @@ nav a:hover::after {
 }
 
 .bio-text {
-    margin-top: 100px;
+    margin-top: 150px;
     font-size: 1rem;
     line-height: 1.8;
     opacity: 0;
@@ -311,3 +311,4 @@ footer {
         flex: 0 0 100%; /* 1 immagine visibile */
     }
 }
+
