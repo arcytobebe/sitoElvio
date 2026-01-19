@@ -33,18 +33,19 @@
 <h2 class="work-title">Contattami</h2>
 
 <main class="contact-form-container">
-    <form class="contact-form" action="mailto:elviotrentini@gmail.com" method="post" enctype="text/plain">
+    <form action="mailto:elviotrentini@gmail.com" method="post" enctype="text/plain">
         <label>Nome</label>
-        <input type="text" required>
+        <input type="text" name="nome" required>
 
         <label>Email</label>
-        <input type="email" required>
+        <input type="email" name="email" required>
 
         <label>Messaggio</label>
-        <textarea required></textarea>
+        <textarea name="messaggio" required></textarea>
 
         <button type="submit">Invia</button>
     </form>
+
 </main>
 
 <div class="contact-info">
@@ -54,7 +55,7 @@
 
 <footer>
     <a href="https://www.instagram.com/elvio_trentini">
-        <img src="../PHOTO/instagram.png" alt="instagram" width="25">
+        <img src="../photo/instagram.png" alt="instagram" width="25">
     </a>
     <p>© Copyright Elvio Trentini</p>
 </footer>
@@ -62,4 +63,3 @@
 <script src="contact.js"></script>
 </body>
 </html>
-
