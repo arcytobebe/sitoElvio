@@ -24,8 +24,8 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
                  Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background-color: var(--bg-main);
     color: var(--text-main);
+    background-color: var(--bg-main);
     line-height: 1.6;
     overflow-x: hidden;
 }
@@ -43,26 +43,29 @@ nav {
     border-bottom: 2px solid rgba(0,0,0,0.08);
     position: sticky;
     top: 0;
-    background-color: var(--bg-main);
     z-index: 1000;
+    background-color: var(--bg-main);
 }
 
-/* logo */
+/* Logo */
 nav h1 a {
     font-size: 1.8rem;
     font-weight: 700;
     letter-spacing: 1px;
     text-decoration: none;
     color: var(--text-main);
-    transition: color var(--transition);
 }
 
-/* =========================
-   MENU DESKTOP
-========================= */
+/* Menu desktop */
 .nav-links {
-    list-style: none;
     display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.nav-links ul {
+    display: flex;
+    list-style: none;
     gap: 32px;
 }
 
@@ -94,69 +97,29 @@ nav h1 a {
     width: 100%;
 }
 
-/* =========================
-   HAMBURGER
-========================= */
-.hamburger {
+/* Hamburger toggle */
+.menu-toggle {
     display: none;
     font-size: 2rem;
     background: none;
     border: none;
     cursor: pointer;
+    z-index: 2000;
     color: var(--text-main);
 }
 
 /* =========================
-   MENU MOBILE A TENDINA
-========================= */
-.mobile-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: var(--bg-main);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    padding: 30px 0;
-    border-bottom: 1px solid rgba(0,0,0,0.08);
-
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(-15px);
-    transition: opacity 0.35s ease, transform 0.35s ease;
-}
-
-.mobile-menu.show {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0);
-}
-
-.mobile-menu a {
-    font-size: 1rem;
-    font-weight: 600;
-    text-decoration: none;
-    color: var(--text-main);
-}
-
-.mobile-menu a:hover {
-    color: var(--accent);
-}
-
-/* =========================
-   TITOLI
+   PAGE TITLE
 ========================= */
 .work-title {
     text-align: center;
-    margin: 40px 0 20px;
-    font-size: 1.8rem;
+    margin: 50px 0 30px;
+    font-size: 1.9rem;
     font-weight: 600;
     letter-spacing: 1px;
     opacity: 0;
     transform: translateY(20px);
-    animation: fadeInUp 0.7s forwards;
+    animation: fadeInUp 0.6s forwards;
 }
 
 /* =========================
@@ -168,7 +131,7 @@ nav h1 a {
     padding: 0 20px;
     opacity: 0;
     transform: translateY(20px);
-    animation: fadeInUp 0.7s forwards;
+    animation: fadeInUp 0.6s forwards;
     animation-delay: 0.2s;
 }
 
@@ -204,7 +167,7 @@ nav h1 a {
 }
 
 /* =========================
-   INFO
+   CONTACT INFO
 ========================= */
 .contact-info {
     text-align: center;
@@ -221,9 +184,10 @@ nav h1 a {
 ========================= */
 footer {
     text-align: center;
-    padding: 20px;
-    background-color: #f1f1f1;
+    padding: 30px 20px;
+    font-size: 0.85rem;
     color: var(--text-muted);
+    background-color: #f1f1f1;
 }
 
 /* =========================
@@ -236,19 +200,126 @@ footer {
     }
 }
 
+@keyframes slideInMobile {
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 /* =========================
-   RESPONSIVE
+   MOBILE RESPONSIVE
 ========================= */
 @media (max-width: 768px) {
-    .nav-links {
-        display: none;
-    }
 
-    .hamburger {
+    /* Mostra hamburger */
+    .menu-toggle {
         display: block;
     }
 
-    nav {
-        padding: 15px 20px;
+    /* Menu mobile */
+    .nav-links {
+        position: fixed;
+        top: 72px;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: var(--bg-main);
+        display: flex;
+        flex-direction: column;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-20px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        z-index: 1500;
+        padding-top: 30px;
+    }
+
+    /* Quando aperto */
+    .nav-links.active {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+    .nav-links ul {
+        flex-direction: column;
+        width: 100%;
+        gap: 20px; /* distanza verticale tra voci */
+    }
+
+    .nav-links ul li {
+        list-style: none;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        opacity: 0; /* parte nascosto per animazione */
+    }
+
+    .nav-links ul li::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 25%;
+        width: 50%;
+        height: 1px;
+        background: rgba(0,0,0,0.12);
+    }
+
+    /* STAGGERED ANIMATION (come Portfolio) */
+    .nav-links.active ul li:nth-child(1) { animation: slideInMobile 0.3s forwards 0s; }
+    .nav-links.active ul li:nth-child(2) { animation: slideInMobile 0.3s forwards 0.05s; }
+    .nav-links.active ul li:nth-child(3) { animation: slideInMobile 0.3s forwards 0.1s; }
+    .nav-links.active ul li:nth-child(4) { animation: slideInMobile 0.3s forwards 0.15s; }
+    .nav-links.active ul li:nth-child(5) { animation: slideInMobile 0.3s forwards 0.2s; }
+    .nav-links.active ul li:nth-child(6) { animation: slideInMobile 0.3s forwards 0.25s; }
+
+    .nav-links a {
+        font-size: 1.3rem;
+        text-decoration: none;
+        color: var(--text-main);
+        transition: color 0.25s ease;
+    }
+
+    .nav-links a:hover {
+        color: var(--accent);
+    }
+
+    /* Link Instagram mobile */
+    .nav-links > a {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-top: 30px;
+        z-index: 1501;
+    }
+
+    .nav-links > a img {
+        width: 25px;
+        margin-bottom: 8px;
+    }
+}
+
+/* Nascondi link Instagram su desktop */
+.nav-links > a {
+    display: none;
+}
+
+/* =========================
+   ANIMAZIONI
+========================= */
+@keyframes slideInMobile {
+    from {
+        opacity: 0;
+        transform: translateY(-20px); /* distanza iniziale identica a Portfolio */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
