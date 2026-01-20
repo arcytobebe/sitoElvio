@@ -31,7 +31,7 @@ body {
 }
 
 /* =========================
-   NAVBAR
+   NAVBAR (UNIFORMATA)
 ========================= */
 nav {
     display: flex;
@@ -40,7 +40,7 @@ nav {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px 40px;
-    border-bottom: 2px solid rgba(0,0,0,0.1);
+    border-bottom: 2px solid rgba(0,0,0,0.08);
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -57,7 +57,7 @@ nav h1 a {
 }
 
 nav h1 a::after {
-    display: none; /* rimuove sottolineatura al passaggio */
+    display: none;
 }
 
 /* menu desktop */
@@ -67,32 +67,36 @@ nav ul {
     gap: 32px;
 }
 
-nav a {
+nav ul a {
     text-decoration: none;
     color: var(--text-main);
     font-weight: 600;
     font-size: 0.9rem;
     position: relative;
-    transition: color var(--transition), transform var(--transition);
+    transition: color var(--transition);
 }
 
-nav a::after {
+nav ul a::after {
     content: "";
     position: absolute;
     left: 0;
-    bottom: -6px;
+    bottom: -4px;
     width: 0;
     height: 2px;
     background-color: var(--accent);
     transition: width var(--transition);
 }
 
-nav a:hover::after {
+nav ul a:hover {
+    color: var(--accent);
+}
+
+nav ul a:hover::after {
     width: 100%;
 }
 
 /* =========================
-   MENU MOBILE
+   TOGGLE MOBILE
 ========================= */
 .menu-toggle {
     display: none;
@@ -241,21 +245,21 @@ footer {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* ========================= RESPONSIVE ========================= */
+/* ========================= RESPONSIVE
+   GALLERY & NAV MOBILE
+========================= */
+/* ========================= RESPONSIVE
+   GALLERY & NAV MOBILE
+========================= */
 @media (max-width: 900px) {
     .gallery {
-        column-count: 2;
+        column-count: 2; /* forziamo due colonne su tablet e mobile */
     }
 }
 
 @media (max-width: 600px) {
     .gallery {
-        column-count: 2; /* modificato da 1 a 2 colonne */
-    }
-
-    nav {
-        flex-direction: row;
-        justify-content: space-between;
+        column-count: 2; /* mobile: sempre due colonne */
     }
 
     .menu-toggle {
@@ -296,14 +300,27 @@ footer {
     .nav-links ul {
         display: flex;
         flex-direction: column;
+        width: 100%;
     }
 
     .nav-links ul li {
+        list-style: none;
         height: 50px;
         display: flex;
         align-items: center;
         justify-content: center;
+        position: relative;
         opacity: 0;
+    }
+
+    .nav-links ul li::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 25%;
+        width: 50%;
+        height: 1px;
+        background: rgba(0,0,0,0.12);
     }
 
     .nav-links.open ul li:nth-child(1) { animation: slideInMobile 0.3s forwards 0s; }
@@ -311,9 +328,32 @@ footer {
     .nav-links.open ul li:nth-child(3) { animation: slideInMobile 0.3s forwards 0.1s; }
     .nav-links.open ul li:nth-child(4) { animation: slideInMobile 0.3s forwards 0.15s; }
     .nav-links.open ul li:nth-child(5) { animation: slideInMobile 0.3s forwards 0.2s; }
-}
+    .nav-links.open ul li:nth-child(6) { animation: slideInMobile 0.3s forwards 0.25s; }
 
-/* NASCONDI LINK INSTAGRAM SU DESKTOP */
-.nav-links > a {
-    display: none;
+    .nav-links a {
+        font-size: 1.3rem;
+        text-decoration: none;
+        color: var(--text-main);
+        transition: color 0.25s ease;
+    }
+
+    .nav-links a:hover {
+        color: var(--accent);
+    }
+
+    /* =========================
+       LINK INSTAGRAM DENTRO L’HAMBURGER
+    ========================= */
+    .nav-links > a {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-top: 0;
+        z-index: 1501;
+    }
+
+    .nav-links > a img {
+        width: 25px;
+        margin-bottom: 8px;
+    }
 }
