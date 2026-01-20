@@ -101,7 +101,7 @@ nav a:hover::after {
     border: none;
     cursor: pointer;
     z-index: 2000;
-    color: #111;           /* testo nero */
+    color: #111;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -122,12 +122,12 @@ nav a:hover::after {
 }
 
 /* =========================
-   GALLERY (2 COLONNE)
+   GALLERY (MASONRY CON ANIMAZIONE PER RIGA)
 ========================= */
 .gallery {
     max-width: 1200px;
     margin: 40px auto 80px;
-    column-count: 2;   /* <-- 2 colonne */
+    column-count: 3;
     column-gap: 0;
 }
 
@@ -184,8 +184,51 @@ footer {
 }
 
 /* =========================
-   ANIMAZIONI
+   LIGHTBOX
 ========================= */
+#lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    flex-direction: column;
+}
+
+#lightbox.show {
+    display: flex;
+}
+
+#lightbox img.lightbox-img {
+    max-width: 90%;
+    max-height: 80%;
+    margin-bottom: 10px;
+}
+
+#lightbox .lightbox-caption {
+    color: #fff;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+#lightbox .close,
+#lightbox .prev,
+#lightbox .next {
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    user-select: none;
+    position: absolute;
+}
+
+#lightbox .close { top: 20px; right: 30px; }
+#lightbox .prev { left: 20px; top: 50%; transform: translateY(-50%); }
+#lightbox .next { right: 20px; top: 50%; transform: translateY(-50%); }
+
+/* ========================= ANIMAZIONI ========================= */
 @keyframes fadeInUp {
     to {
         opacity: 1;
@@ -198,9 +241,7 @@ footer {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* ========================= RESPONSIVE ========================= */
 @media (max-width: 900px) {
     .gallery {
         column-count: 2;
@@ -209,7 +250,7 @@ footer {
 
 @media (max-width: 600px) {
     .gallery {
-        column-count: 1; /* una colonna su mobile */
+        column-count: 2; /* modificato da 1 a 2 colonne */
     }
 
     nav {
