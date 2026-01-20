@@ -15,16 +15,17 @@
     --text-main: #111;
     --text-muted: #666;
     --bg-main: #fff;
+    --transition: 0.3s ease;
 }
 
 /* =========================
-   BODY
+   BASE
 ========================= */
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
                  Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background-color: var(--bg-main);
     color: var(--text-main);
+    background-color: var(--bg-main);
     line-height: 1.6;
     overflow-x: hidden;
 }
@@ -39,19 +40,19 @@ nav {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px 40px;
-    border-bottom: 2px solid rgba(0,0,0,0.1);
-    position: relative;
-    z-index: 10;
+    border-bottom: 2px solid rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: var(--bg-main);
 }
 
+/* logo */
 nav h1 a {
     font-size: 1.8rem;
     font-weight: 700;
     letter-spacing: 1px;
     text-decoration: none;
-}
-
-nav h1 a:hover {
     color: var(--text-main);
 }
 
@@ -59,82 +60,76 @@ nav h1 a::after {
     display: none;
 }
 
+/* menu desktop */
 nav ul {
     list-style: none;
     display: flex;
     gap: 32px;
 }
 
-nav a {
+nav ul a {
     text-decoration: none;
     color: var(--text-main);
     font-weight: 600;
     font-size: 0.9rem;
     position: relative;
-    transition: color 0.25s ease, transform 0.3s ease;
+    transition: color var(--transition);
 }
 
-nav a::after {
+nav ul a::after {
     content: "";
     position: absolute;
     left: 0;
-    bottom: -6px;
+    bottom: -4px;
     width: 0;
     height: 2px;
     background-color: var(--accent);
-    transition: width 0.3s ease;
+    transition: width var(--transition);
 }
 
-nav a:hover {
+nav ul a:hover {
     color: var(--accent);
-    transform: translateY(-2px);
 }
 
-nav a:hover::after {
+nav ul a:hover::after {
     width: 100%;
 }
 
 /* =========================
-   PAGE TITLE
+   TOGGLE MOBILE
 ========================= */
-.work-title {
-    text-align: center;
-    margin: 60px 0 30px;
-    font-size: 1.8rem;
-    font-weight: 600;
-    letter-spacing: 1px;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.7s ease-out forwards;
+.menu-toggle {
+    display: none;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #111;
+    z-index: 2000;
+    appearance: none;
 }
 
 /* =========================
-   BIO CONTAINER
+   BIO
 ========================= */
 .bio-container {
     max-width: 1200px;
-    margin: 40px auto 80px;
-    margin-top: 50px;
+    margin: 50px auto 80px;
     padding: 0 40px;
     display: grid;
     grid-template-columns: 380px 1fr;
     gap: 40px;
-    align-items: start;
 }
 
 .bio-image {
-    overflow: hidden;
     opacity: 0;
     transform: translateY(30px);
-    animation: fadeInUp 0.7s ease-out forwards;
-    animation-delay: 0.15s;
+    animation: fadeInUp 0.7s ease-out forwards 0.15s;
 }
 
 .bio-image img {
     width: 100%;
-    height: auto;
     display: block;
-    object-fit: cover;
     transition: transform 0.6s ease;
 }
 
@@ -144,13 +139,10 @@ nav a:hover::after {
 
 .bio-text {
     margin-top: 150px;
-    font-size: 1rem;
-    line-height: 1.8;
+    text-align: center;
     opacity: 0;
     transform: translateY(30px);
-    animation: fadeInUp 0.7s ease-out forwards;
-    animation-delay: 0.3s;
-    text-align: center;
+    animation: fadeInUp 0.7s ease-out forwards 0.3s;
 }
 
 .bio-text h2 {
@@ -161,114 +153,7 @@ nav a:hover::after {
 
 .bio-text p {
     margin-bottom: 16px;
-    color: var(--text-main);
 }
-
-/* =========================
-   CAROUSEL
-========================= */
-/* =========================
-   CAROUSEL
-========================= */
-.carousel-container {
-    position: relative;
-    overflow: visible; /* importante per far cliccare le frecce */
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.7s ease-out forwards;
-    animation-delay: 0.45s; /* apparirà dopo la bio */
-    max-width: 1000px;
-    margin: 40px auto;
-    padding: 0 20px;
-}
-
-.carousel {
-    display: flex;
-    overflow: hidden;
-    gap: 15px;
-    scroll-behavior: smooth;
-}
-
-.carousel-item {
-    flex: 0 0 calc((100% - 30px) / 3); /* 3 elementi visibili */
-    position: relative;
-    cursor: pointer;
-}
-
-.carousel-item img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.3s ease;
-}
-
-.carousel-item:hover img {
-    transform: scale(1.05);
-}
-
-.overlay-text {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: rgba(0,0,0,0.6);
-    color: #fff;
-    text-align: center;
-    padding: 10px 0;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-}
-
-.carousel-item:hover .overlay-text {
-    opacity: 1;
-}
-
-/* =========================
-   FRECCE
-========================= */
-.carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0,0,0,0.5);
-    color: #fff;
-    border: none;
-    font-size: 2rem;
-    padding: 10px 15px;
-    cursor: pointer;
-    z-index: 100; /* alto per essere sopra il carosello */
-    transition: background 0.3s ease;
-}
-
-.carousel-btn:hover {
-    background: rgba(0,0,0,0.8);
-}
-
-.carousel-btn.prev {
-    left: -10px; /* leggermente fuori dal bordo */
-}
-
-.carousel-btn.next {
-    right: -10px; /* leggermente fuori dal bordo */
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-@media (max-width: 900px) {
-    .carousel-item {
-        flex: 0 0 calc((100% - 15px) / 2); /* 2 elementi visibili */
-    }
-}
-
-@media (max-width: 600px) {
-    .carousel-item {
-        flex: 0 0 100%; /* 1 elemento visibile */
-    }
-}
-
 
 /* =========================
    FOOTER
@@ -291,24 +176,128 @@ footer {
     }
 }
 
+@keyframes slideInMobile {
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* =========================
    RESPONSIVE
 ========================= */
 @media (max-width: 900px) {
     .bio-container {
         grid-template-columns: 1fr;
-        gap: 30px;
         padding: 0 20px;
-    }
-
-    .carousel-item {
-        flex: 0 0 calc((100% - 15px) / 2); /* 2 immagini visibili */
     }
 }
 
 @media (max-width: 600px) {
-    .carousel-item {
-        flex: 0 0 100%; /* 1 immagine visibile */
+
+    /* hamburger */
+    .menu-toggle {
+        display: block;
+    }
+
+    /* menu mobile */
+    .nav-links {
+        position: fixed;
+        top: 72px;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-20px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        z-index: 1500;
+        padding-top: 30px;
+    }
+
+    .nav-links.open {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+    .nav-links ul {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .nav-links ul li {
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        opacity: 0;
+    }
+
+    .nav-links ul li::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 25%;
+        width: 50%;
+        height: 1px;
+        background: rgba(0,0,0,0.12);
+    }
+
+    .nav-links.open ul li:nth-child(1) { animation: slideInMobile 0.3s forwards 0s; }
+    .nav-links.open ul li:nth-child(2) { animation: slideInMobile 0.3s forwards 0.05s; }
+    .nav-links.open ul li:nth-child(3) { animation: slideInMobile 0.3s forwards 0.1s; }
+    .nav-links.open ul li:nth-child(4) { animation: slideInMobile 0.3s forwards 0.15s; }
+    .nav-links.open ul li:nth-child(5) { animation: slideInMobile 0.3s forwards 0.2s; }
+
+    .nav-links a {
+        font-size: 1.3rem;
+        text-decoration: none;
+        color: var(--text-main);
+    }
+
+    .nav-links a:hover {
+        color: var(--accent);
+    }
+
+    /* instagram mobile */
+    .nav-links > a {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+    }
+
+    .nav-links > a img {
+        width: 25px;
     }
 }
+/* =========================
+   INSTAGRAM MOBILE
+========================= */
 
+/* sempre nascosta di default */
+.nav-links > a {
+    display: none;
+}
+
+/* visibile SOLO quando il menu è aperto su mobile */
+@media (max-width: 600px) {
+    .nav-links.open > a {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+    }
+
+    .nav-links.open > a img {
+        width: 25px;
+    }
+}
