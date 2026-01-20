@@ -1,4 +1,20 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    // ✅ MENU MOBILE
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+        });
+    }
+});
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
     // Navigazione
     const homeBtn = document.getElementById('goToHomeBtn');
     const contBtn = document.getElementById('goToCont');
