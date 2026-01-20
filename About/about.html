@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About — Portfolio</title>
     <link rel="stylesheet" href="about.css">
 </head>
@@ -9,33 +10,46 @@
 
 <nav>
     <h1><a href="../index.html">ELVIO TRENTINI</a></h1>
-    <ul>
-        <li><a href="../Fashion/fashion.html">FASHION</a></li>
-        <li><a href="../Adv/adv.html">ADV</a></li>
-        <li><a href="../Artist/artist.html">ARTIST</a></li>
-        <li><a href="../About/about.html">ABOUT</a></li>
-        <li><a href="../Contact/contact.html">CONTACT</a></li>
-    </ul>
+
+    <!-- Toggle mobile -->
+    <button class="menu-toggle">☰</button>
+
+    <!-- Nav links -->
+    <div class="nav-links">
+        <ul>
+            <li><a href="../Fashion/fashion.html">FASHION</a></li>
+            <li><a href="../Adv/adv.html">ADV</a></li>
+            <li><a href="../Artist/artist.html">ARTIST</a></li>
+            <li><a href="../About/about.html">ABOUT</a></li>
+            <li><a href="../Contact/contact.html">CONTACT</a></li>
+        </ul>
+
+        <!-- Instagram (visibile solo mobile) -->
+        <a class="ig-link" href="https://www.instagram.com/elvio_trentini">
+            <img src="../PHOTO/instagram.png" alt="Instagram">
+        </a>
+    </div>
 </nav>
 
 <div class="bio-container">
     <div class="bio-image">
         <img src="../PHOTO/elvio.jpeg" alt="Foto Elvio Trentini">
     </div>
-    <div class="bio-text">
 
-        <p>Hi, I’m Elvio! I’m an Italian photographer, currently based between Milan and Barcelona.<br>
-        Through my work, I aim to create images capable to form a visual reality expressive communicatively and aesthetically.
-        People are always at the heart of my visual exploration: the human figure is what drives every project I undertake.<br>
-        Born as self-taught creative, before fully committing to photography, I earned a degree in Communication and Contemporary Media.<br>
-        I primarily work in the fields of fashion, advertising, and music, using color, imagery, and multimedia influences to convey my artistic vision and personal identity, which I feel “pop”.</p>
+    <div class="bio-text">
+        <p>
+            Hi, I’m Elvio! I’m an Italian photographer, currently based between Milan and Barcelona.<br>
+            Through my work, I aim to create images capable to form a visual reality expressive communicatively and aesthetically.
+            People are always at the heart of my visual exploration: the human figure is what drives every project I undertake.<br>
+            Born as self-taught creative, before fully committing to photography, I earned a degree in Communication and Contemporary Media.<br>
+            I primarily work in the fields of fashion, advertising, and music, using color, imagery, and multimedia influences to convey my artistic vision and personal identity, which I feel “pop”.
+        </p>
     </div>
 </div>
 
-
 <footer>
     <a href="https://www.instagram.com/elvio_trentini">
-        <img src="../PHOTO/instagram.png" alt="instagram" style="width: 25px; margin-bottom: 1%;">
+        <img src="../PHOTO/instagram.png" alt="Instagram" style="width:25px; margin-bottom:8px;">
     </a>
     <p>© Copyright Elvio Trentini</p>
 </footer>
@@ -43,8 +57,3 @@
 <script src="about.js"></script>
 </body>
 </html>
-
-
-
-
-
