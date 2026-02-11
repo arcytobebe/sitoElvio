@@ -126,7 +126,6 @@ nav ul a:hover::after {
 .item img {
     width: 100%;
     display: block;
-    padding: 5px;
     transition: transform 0.6s ease, filter 0.6s ease, opacity 0.6s ease, transform 0.6s ease;
 
     /* ANIMAZIONE solo sull'immagine */
@@ -344,3 +343,4 @@ footer {
 .nav-links > a {
     display: none;
 }
+
