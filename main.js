@@ -55,9 +55,3 @@ scrollBtn.addEventListener("click", () => {
 });
 
 
-
-///////
-
-if (window.location.href.includes(".html")) {
-  const newUrl = window.location.href.replace(".html", "/");
-  window.history.replaceState({}, "", newUrl);
