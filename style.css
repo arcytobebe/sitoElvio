@@ -126,13 +126,13 @@ nav ul a:hover::after {
 .item img {
     width: 100%;
     display: block;
-    transition: transform 0.6s ease, filter 0.6s ease, opacity 0.6s ease, transform 0.6s ease;
+    transition: transform 0.6s ease, filter 0.6s ease;
 
-    /* ANIMAZIONE solo sull'immagine */
     opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.6s forwards;
+    animation: fadeIn 1.5s ease forwards; /* più lenta */
 }
+
+
 
 /* Hover desktop */
 .item:hover img {
@@ -227,12 +227,17 @@ footer {
 /* =========================
    ANIMAZIONI
 ========================= */
-@keyframes fadeInUp {
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(1.03);
+    }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: scale(1);
     }
 }
+
 
 @keyframes slideInMobile {
     from {
