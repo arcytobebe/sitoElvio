@@ -31,14 +31,14 @@ document.addEventListener("click", (e) => {
 /* =========================
    STAGGER ANIMATION PER RIGHE
 ========================= */
-const items = document.querySelectorAll(".gallery .item img");
+const itemsImg = document.querySelectorAll(".gallery .item img");
 const columns = 3;
 
-items.forEach((item, index) => {
+items.forEach((itemImg, index) => {
     const row = Math.floor(index / columns);
-    item.style.animationDelay = `${row * 0.15}s`;
+    itemImg.style.animationDelay = `${row * 0.15}s`;
 });
-items = document.querySelectorAll(".gallery .item");
+const items = document.querySelectorAll(".gallery .item");
 
 /* =========================
    TOUCH HIGHLIGHT MOBILE
@@ -106,5 +106,6 @@ items.forEach(item => {
         });
     }
 });
+
 
 
