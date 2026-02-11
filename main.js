@@ -1,17 +1,18 @@
 /* =========================
-   MENU MOBILE TOGGLE
+   MENU MOBILE TOGGLE + BLOCCO SCROLL
 ========================= */
 const toggle = document.querySelector(".menu-toggle");
 const navLinks = document.querySelector(".nav-links");
 const links = navLinks.querySelectorAll("a");
 
 toggle.addEventListener("click", (e) => {
-    e.stopPropagation();
+    e.stopPropagation(); // evita che il document click chiuda subito
     const isOpen = navLinks.classList.toggle("open");
     document.body.classList.toggle("menu-open", isOpen);
     toggle.textContent = isOpen ? "✕" : "☰";
 });
 
+// chiusura menu quando clicchi un link
 links.forEach(link => {
     link.addEventListener("click", () => {
         navLinks.classList.remove("open");
@@ -20,6 +21,7 @@ links.forEach(link => {
     });
 });
 
+// chiusura menu quando clicchi fuori
 document.addEventListener("click", (e) => {
     if (!navLinks.contains(e.target) && !toggle.contains(e.target)) {
         navLinks.classList.remove("open");
@@ -27,6 +29,7 @@ document.addEventListener("click", (e) => {
         toggle.textContent = "☰";
     }
 });
+
 
 /* =========================
    TOUCH HIGHLIGHT MOBILE
@@ -53,5 +56,3 @@ window.addEventListener("scroll", () => {
 scrollBtn.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
 });
-
-
