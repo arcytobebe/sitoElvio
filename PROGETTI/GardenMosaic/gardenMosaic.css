@@ -106,8 +106,6 @@ nav ul a:hover::after {
     cursor: pointer;
     z-index: 2000;
     color: #111;
-    -webkit-appearance: none;
-    -moz-appearance: none;
     appearance: none;
 }
 
@@ -126,7 +124,7 @@ nav ul a:hover::after {
 }
 
 /* =========================
-   GALLERY (MASONRY CON ANIMAZIONE PER RIGA)
+   GALLERY (MASONRY + ANIMAZIONE)
 ========================= */
 .gallery {
     max-width: 1200px;
@@ -141,12 +139,16 @@ nav ul a:hover::after {
     overflow: hidden;
     opacity: 0;
     transform: translateY(20px);
-    animation: fadeInUp 0.6s forwards;
+    animation: fadeIn 1.2s ease forwards; /* animazione più morbida */
+    background-color: #ddd; /* placeholder iniziale */
+    transition: background-color 0.5s ease;
 }
 
 .item img {
     width: 100%;
     display: block;
+    opacity: 0;
+    animation: fadeIn 1.5s ease forwards; /* fade più lento */
     transition: transform 0.6s ease, filter 0.6s ease;
 }
 
@@ -172,7 +174,8 @@ nav ul a:hover::after {
     transition: opacity 0.35s ease;
 }
 
-.item:hover .overlay-text {
+.item:hover .overlay-text,
+.item.touch-active .overlay-text {
     opacity: 1;
 }
 
@@ -240,6 +243,17 @@ footer {
     }
 }
 
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(1.03);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
 @keyframes slideInMobile {
     from { opacity: 0; transform: translateY(-15px); }
     to { opacity: 1; transform: translateY(0); }
@@ -248,23 +262,14 @@ footer {
 /* ========================= RESPONSIVE
    GALLERY & NAV MOBILE
 ========================= */
-/* ========================= RESPONSIVE
-   GALLERY & NAV MOBILE
-========================= */
 @media (max-width: 900px) {
-    .gallery {
-        column-count: 2; /* forziamo due colonne su tablet e mobile */
-    }
+    .gallery { column-count: 2; }
 }
 
 @media (max-width: 600px) {
-    .gallery {
-        column-count: 2; /* mobile: sempre due colonne */
-    }
+    .gallery { column-count: 2; }
 
-    .menu-toggle {
-        display: block;
-    }
+    .menu-toggle { display: block; }
 
     body.menu-open::before {
         content: "";
@@ -337,13 +342,8 @@ footer {
         transition: color 0.25s ease;
     }
 
-    .nav-links a:hover {
-        color: var(--accent);
-    }
+    .nav-links a:hover { color: var(--accent); }
 
-    /* =========================
-       LINK INSTAGRAM DENTRO L’HAMBURGER
-    ========================= */
     .nav-links > a {
         display: flex;
         justify-content: center;
@@ -352,8 +352,8 @@ footer {
         z-index: 1501;
     }
 
-    .nav-links > a img {
-        width: 25px;
-        margin-bottom: 8px;
-    }
+    .nav-links > a img { width: 25px; margin-bottom: 8px; }
 }
+
+/* instagram nascosto desktop */
+.nav-links > a { display: none; }
