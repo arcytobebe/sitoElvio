@@ -34,7 +34,7 @@ document.addEventListener("click", (e) => {
 const itemsImg = document.querySelectorAll(".gallery .item img");
 const columns = 3;
 
-items.forEach((itemImg, index) => {
+itemsImg.forEach((itemImg, index) => {
     const row = Math.floor(index / columns);
     itemImg.style.animationDelay = `${row * 0.15}s`;
 });
@@ -106,6 +106,7 @@ items.forEach(item => {
         });
     }
 });
+
 
 
 
