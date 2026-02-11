@@ -31,7 +31,7 @@ document.addEventListener("click", (e) => {
 /* =========================
    STAGGER ANIMATION PER RIGHE
 ========================= */
-const items = document.querySelectorAll(".gallery .item");
+const items = document.querySelectorAll(".gallery .item img");
 const columns = 3;
 
 items.forEach((item, index) => {
@@ -105,3 +105,4 @@ items.forEach(item => {
         });
     }
 });
+
