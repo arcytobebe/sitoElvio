@@ -38,6 +38,7 @@ items.forEach((item, index) => {
     const row = Math.floor(index / columns);
     item.style.animationDelay = `${row * 0.15}s`;
 });
+items = document.querySelectorAll(".gallery .item");
 
 /* =========================
    TOUCH HIGHLIGHT MOBILE
@@ -105,4 +106,5 @@ items.forEach(item => {
         });
     }
 });
+
 
