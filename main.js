@@ -56,3 +56,24 @@ window.addEventListener("scroll", () => {
 scrollBtn.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
 });
+
+
+/* =========================
+   LINK INSTAGRAM MOBILE
+========================= */
+const instagramLink = document.querySelector('.nav-links > a');
+
+function toggleInstagram() {
+    if (!instagramLink) return;
+    if (window.innerWidth < 1200) {
+        instagramLink.style.display = 'flex';
+    } else {
+        instagramLink.style.display = 'none';
+    }
+}
+
+// controllo iniziale
+toggleInstagram();
+
+// aggiornamento al resize
+window.addEventListener('resize', toggleInstagram);
