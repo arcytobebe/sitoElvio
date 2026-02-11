@@ -29,29 +29,15 @@ document.addEventListener("click", (e) => {
 });
 
 /* =========================
-   STAGGER ANIMATION PER RIGHE
-========================= */
-const itemsImg = document.querySelectorAll(".gallery .item img");
-const columns = 3;
-
-itemsImg.forEach((itemImg, index) => {
-    const row = Math.floor(index / columns);
-    itemImg.style.animationDelay = `${row * 0.15}s`;
-});
-const items = document.querySelectorAll(".gallery .item");
-
-/* =========================
    TOUCH HIGHLIGHT MOBILE
 ========================= */
+const items = document.querySelectorAll(".gallery .item");
+
 items.forEach(item => {
     item.addEventListener("touchstart", () => {
         if (window.innerWidth <= 600) item.classList.add("touch-active");
     });
-    item.addEventListener("touchmove", () => {
-        if (window.innerWidth <= 600) item.classList.add("touch-active");
-    });
     item.addEventListener("touchend", () => item.classList.remove("touch-active"));
-    item.addEventListener("touchcancel", () => item.classList.remove("touch-active"));
 });
 
 /* =========================
@@ -67,46 +53,3 @@ window.addEventListener("scroll", () => {
 scrollBtn.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
 });
-
-/* =========================
-   COLORE DOMINANTE PER LE IMMAGINI
-========================= */
-function getDominantColor(img, callback) {
-    const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d");
-    canvas.width = img.naturalWidth;
-    canvas.height = img.naturalHeight;
-    ctx.drawImage(img, 0, 0);
-    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    const data = imageData.data;
-
-    let r = 0, g = 0, b = 0, count = 0;
-    for (let i = 0; i < data.length; i += 4) {
-        r += data[i];
-        g += data[i+1];
-        b += data[i+2];
-        count++;
-    }
-
-    r = Math.floor(r / count);
-    g = Math.floor(g / count);
-    b = Math.floor(b / count);
-
-    callback(`rgb(${r},${g},${b})`);
-}
-
-items.forEach(item => {
-    const img = item.querySelector("img");
-
-    if (img.complete) {
-        getDominantColor(img, color => item.style.backgroundColor = color);
-    } else {
-        img.addEventListener("load", () => {
-            getDominantColor(img, color => item.style.backgroundColor = color);
-        });
-    }
-});
-
-
-
-
