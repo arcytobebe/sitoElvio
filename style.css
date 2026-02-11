@@ -115,9 +115,8 @@ nav ul a:hover::after {
 .item {
     position: relative;
     overflow: hidden;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.6s forwards;
+    opacity: 1; /* subito visibile */
+    transform: translateY(0);
 
     /* Placeholder iniziale */
     background-color: #ddd; 
@@ -127,8 +126,13 @@ nav ul a:hover::after {
 .item img {
     width: 100%;
     display: block;
-    transition: transform 0.6s ease, filter 0.6s ease;
     padding: 5px;
+    transition: transform 0.6s ease, filter 0.6s ease, opacity 0.6s ease, transform 0.6s ease;
+
+    /* ANIMAZIONE solo sull'immagine */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s forwards;
 }
 
 /* Hover desktop */
