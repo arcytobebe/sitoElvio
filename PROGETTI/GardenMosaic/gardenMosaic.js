@@ -1,4 +1,6 @@
-/* LIGHTBOX */
+/* =========================
+   LIGHTBOX
+========================= */
 const galleryItems = document.querySelectorAll('.gallery .item img');
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.querySelector('.lightbox-img');
@@ -38,23 +40,28 @@ lightbox.addEventListener('click', (e) => {
     if (e.target === lightbox) closeLightbox();
 });
 
-/* MENU MOBILE */
+/* =========================
+   MENU MOBILE TOGGLE
+========================= */
 const toggle = document.querySelector(".menu-toggle");
 const navLinks = document.querySelector(".nav-links");
+const links = navLinks.querySelectorAll("a");
 
 toggle.addEventListener("click", (e) => {
-    e.stopPropagation();
+    e.stopPropagation(); // evita che il click chiuda subito
     const isOpen = navLinks.classList.toggle("open");
     toggle.textContent = isOpen ? "✕" : "☰";
 });
 
-document.querySelectorAll(".nav-links a").forEach(link => {
+// chiusura menu quando clicchi un link
+links.forEach(link => {
     link.addEventListener("click", () => {
         navLinks.classList.remove("open");
         toggle.textContent = "☰";
     });
 });
 
+// chiusura menu quando clicchi fuori
 document.addEventListener("click", (e) => {
     if (!navLinks.contains(e.target) && !toggle.contains(e.target)) {
         navLinks.classList.remove("open");
@@ -75,20 +82,6 @@ items.forEach(item => {
 });
 
 /* =========================
-   SCROLL TO TOP
-========================= */
-const scrollBtn = document.getElementById("scrollToTop");
-
-window.addEventListener("scroll", () => {
-    if (window.scrollY > 300) scrollBtn.classList.add("show");
-    else scrollBtn.classList.remove("show");
-});
-
-scrollBtn.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-});
-
-/* =========================
    STAGGER ANIMATION PER GALLERY
 ========================= */
 const columns = 3; // numero colonne masonry
@@ -98,3 +91,24 @@ items.forEach((item, index) => {
     item.style.animationDelay = `${row * 0.15}s`;
     item.classList.add("reveal"); // opzionale per ulteriori effetti CSS
 });
+
+/* =========================
+   LINK INSTAGRAM MOBILE
+========================= */
+const instagramLink = document.querySelector('.nav-links > a');
+
+function toggleInstagram() {
+    if (!instagramLink) return;
+    // Mostra solo quando il menu è mobile (≤600px)
+    if (window.innerWidth <= 600) {
+        instagramLink.style.display = 'flex';
+    } else {
+        instagramLink.style.display = 'none';
+    }
+}
+
+// Controllo iniziale
+toggleInstagram();
+
+// Aggiornamento al resize
+window.addEventListener('resize', toggleInstagram);
