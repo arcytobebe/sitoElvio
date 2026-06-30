@@ -3,33 +3,42 @@
 ========================= */
 const toggle = document.querySelector(".menu-toggle");
 const navLinks = document.querySelector(".nav-links");
-const links = navLinks.querySelectorAll("a");
+const links = navLinks ? navLinks.querySelectorAll("a") : [];
 
-toggle.addEventListener("click", (e) => {
-    e.stopPropagation(); // evita che il document click chiuda subito
-    const isOpen = navLinks.classList.toggle("open");
-    document.body.classList.toggle("menu-open", isOpen);
-    toggle.textContent = isOpen ? "✕" : "☰";
-});
+function closeMenu() {
+    if (!navLinks || !toggle) return;
 
-// chiusura menu quando clicchi un link
-links.forEach(link => {
-    link.addEventListener("click", () => {
-        navLinks.classList.remove("open");
-        document.body.classList.remove("menu-open");
-        toggle.textContent = "☰";
+    navLinks.classList.remove("open");
+    document.body.classList.remove("menu-open");
+    toggle.textContent = "☰";
+}
+
+if (toggle) {
+    toggle.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const isOpen = navLinks.classList.toggle("open");
+        document.body.classList.toggle("menu-open", isOpen);
+        toggle.textContent = isOpen ? "✕" : "☰";
     });
+}
+
+links.forEach(link => {
+    link.addEventListener("click", closeMenu);
 });
 
-// chiusura menu quando clicchi fuori
 document.addEventListener("click", (e) => {
+    if (!navLinks || !toggle) return;
+
     if (!navLinks.contains(e.target) && !toggle.contains(e.target)) {
-        navLinks.classList.remove("open");
-        document.body.classList.remove("menu-open");
-        toggle.textContent = "☰";
+        closeMenu();
     }
 });
 
+window.addEventListener("resize", () => {
+    if (window.innerWidth > 600) {
+        closeMenu();
+    }
+});
 
 /* =========================
    TOUCH HIGHLIGHT MOBILE
@@ -39,41 +48,32 @@ const items = document.querySelectorAll(".gallery .item");
 items.forEach(item => {
     item.addEventListener("touchstart", () => {
         if (window.innerWidth <= 600) item.classList.add("touch-active");
-    });
-    item.addEventListener("touchend", () => item.classList.remove("touch-active"));
+    }, { passive: true });
+
+    item.addEventListener("touchend", () => item.classList.remove("touch-active"), { passive: true });
 });
 
 /* =========================
    SCROLL TO TOP
 ========================= */
 const scrollBtn = document.getElementById("scrollToTop");
+let isScrollBtnVisible = false;
 
-window.addEventListener("scroll", () => {
-    if (window.scrollY > 300) scrollBtn.classList.add("show");
-    else scrollBtn.classList.remove("show");
-});
+function updateScrollButton() {
+    if (!scrollBtn) return;
 
-scrollBtn.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-});
+    const shouldShow = window.scrollY > 300;
+    if (shouldShow === isScrollBtnVisible) return;
 
-
-/* =========================
-   LINK INSTAGRAM MOBILE
-========================= */
-const instagramLink = document.querySelector('.nav-links > a');
-
-function toggleInstagram() {
-    if (!instagramLink) return;
-    if (window.innerWidth < 1200) {
-        instagramLink.style.display = 'flex';
-    } else {
-        instagramLink.style.display = 'none';
-    }
+    isScrollBtnVisible = shouldShow;
+    scrollBtn.classList.toggle("show", shouldShow);
 }
 
-// controllo iniziale
-toggleInstagram();
+window.addEventListener("scroll", updateScrollButton, { passive: true });
+updateScrollButton();
 
-// aggiornamento al resize
-window.addEventListener('resize', toggleInstagram);
+if (scrollBtn) {
+    scrollBtn.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+}
