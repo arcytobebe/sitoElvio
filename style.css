@@ -117,7 +117,7 @@ nav ul a:hover::after {
     overflow: hidden;
     opacity: 1; /* subito visibile */
     transform: translateY(0);
-
+    padding: 5%;
     /* Placeholder iniziale */
     background-color: #ddd; 
     transition: background-color 0.5s ease; /* transizione morbida colore dominante */
