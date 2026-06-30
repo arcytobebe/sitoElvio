@@ -344,6 +344,11 @@ footer .footer-ig img,
     .nav-links.open ul li:nth-child(5) { animation: slideInMobile 0.3s forwards 0.2s; }
     .nav-links.open ul li:nth-child(6) { animation: slideInMobile 0.3s forwards 0.25s; }
 
+    .nav-links.open > a {
+        animation: slideInMobile 0.3s forwards 0.3s;
+        opacity: 0;
+    }
+
     .nav-links a {
         font-size: 1.3rem;
         text-decoration: none;
