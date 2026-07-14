@@ -4,6 +4,7 @@
 const galleryItems = document.querySelectorAll('.gallery .item img');
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.querySelector('.lightbox-img');
+const lightboxCaption = document.querySelector('.lightbox-caption');
 const closeBtn = document.querySelector('.close');
 const prevBtn = document.querySelector('.prev');
 const nextBtn = document.querySelector('.next');
@@ -13,6 +14,7 @@ let currentIndex = 0;
 function openLightbox(index) {
     currentIndex = index;
     lightboxImg.src = galleryItems[currentIndex].src;
+    lightboxCaption.textContent = galleryItems[currentIndex].dataset.title || '';
     lightbox.classList.add('show');
 }
 
