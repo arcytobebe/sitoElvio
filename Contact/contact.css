@@ -1,0 +1,325 @@
+/* =========================
+   RESET
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* =========================
+   VARIABILI
+========================= */
+:root {
+    --accent: rgb(133,145,156);
+    --text-main: #111;
+    --text-muted: #666;
+    --bg-main: #fff;
+    --transition: 0.3s ease;
+}
+
+/* =========================
+   BODY
+========================= */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                 Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    color: var(--text-main);
+    background-color: var(--bg-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 40px;
+    border-bottom: 2px solid rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: var(--bg-main);
+}
+
+/* Logo */
+nav h1 a {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-decoration: none;
+    color: var(--text-main);
+}
+
+/* Menu desktop */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.nav-links ul {
+    display: flex;
+    list-style: none;
+    gap: 32px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: 600;
+    font-size: 0.9rem;
+    position: relative;
+    transition: color var(--transition);
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent);
+    transition: width var(--transition);
+}
+
+.nav-links a:hover {
+    color: var(--accent);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Hamburger toggle */
+.menu-toggle {
+    display: none;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 2000;
+    color: var(--text-main);
+}
+
+/* =========================
+   PAGE TITLE
+========================= */
+.work-title {
+    text-align: center;
+    margin: 50px 0 30px;
+    font-size: 1.9rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s forwards;
+}
+
+/* =========================
+   CONTACT FORM
+========================= */
+.contact-form-container {
+    max-width: 700px;
+    margin: 0 auto 50px;
+    padding: 0 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s forwards;
+    animation-delay: 0.2s;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-form label {
+    font-weight: 600;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.contact-form textarea {
+    min-height: 150px;
+}
+
+.contact-form button {
+    padding: 12px;
+    background-color: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* =========================
+   CONTACT INFO
+========================= */
+.contact-info {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.contact-info a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer {
+    text-align: center;
+    padding: 30px 20px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    background-color: #f1f1f1;
+}
+
+/* =========================
+   ANIMAZIONI
+========================= */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInMobile {
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+
+    /* Mostra hamburger */
+    .menu-toggle {
+        display: block;
+    }
+
+    /* Menu mobile */
+    .nav-links {
+        position: fixed;
+        top: 72px;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: var(--bg-main);
+        display: flex;
+        flex-direction: column;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-20px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        z-index: 1500;
+        padding-top: 30px;
+    }
+
+    /* Quando aperto */
+    .nav-links.active {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+    .nav-links ul {
+        flex-direction: column;
+        width: 100%;
+        gap: 20px; /* distanza verticale tra voci */
+    }
+
+    .nav-links ul li {
+        list-style: none;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        opacity: 0; /* parte nascosto per animazione */
+    }
+
+    .nav-links ul li::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 25%;
+        width: 50%;
+        height: 1px;
+        background: rgba(0,0,0,0.12);
+    }
+
+    /* STAGGERED ANIMATION (come Portfolio) */
+    .nav-links.active ul li:nth-child(1) { animation: slideInMobile 0.3s forwards 0s; }
+    .nav-links.active ul li:nth-child(2) { animation: slideInMobile 0.3s forwards 0.05s; }
+    .nav-links.active ul li:nth-child(3) { animation: slideInMobile 0.3s forwards 0.1s; }
+    .nav-links.active ul li:nth-child(4) { animation: slideInMobile 0.3s forwards 0.15s; }
+    .nav-links.active ul li:nth-child(5) { animation: slideInMobile 0.3s forwards 0.2s; }
+    .nav-links.active ul li:nth-child(6) { animation: slideInMobile 0.3s forwards 0.25s; }
+
+    .nav-links a {
+        font-size: 1.3rem;
+        text-decoration: none;
+        color: var(--text-main);
+        transition: color 0.25s ease;
+    }
+
+    .nav-links a:hover {
+        color: var(--accent);
+    }
+
+    /* Link Instagram mobile */
+    .nav-links > a {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-top: 30px;
+        z-index: 1501;
+    }
+
+    .nav-links > a img {
+        width: 25px;
+        margin-bottom: 8px;
+    }
+}
+
+/* Nascondi link Instagram su desktop */
+.nav-links > a {
+    display: none;
+}
+
+/* =========================
+   ANIMAZIONI
+========================= */
+@keyframes slideInMobile {
+    from {
+        opacity: 0;
+        transform: translateY(-20px); /* distanza iniziale identica a Portfolio */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
